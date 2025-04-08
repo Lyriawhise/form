@@ -1,0 +1,584 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #000000, #0f0c29, #000000);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: relative;
+}
+
+/* Star background - optimized */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 50%;
+    will-change: transform, opacity;
+    animation: twinkle 5s infinite;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.2; transform: scale(1); }
+}
+
+/* Shooting stars - reduced number */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1));
+    transform: rotate(45deg);
+    border-radius: 999px;
+    filter: drop-shadow(0 0 6px white);
+    will-change: transform, opacity;
+    animation: shooting 3s linear infinite;
+}
+
+@keyframes shooting {
+    0% {
+        transform: translateX(-500px) translateY(-500px) rotate(45deg);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+        height: 50px;
+    }
+    100% {
+        transform: translateX(1500px) translateY(1500px) rotate(45deg);
+        opacity: 0;
+        height: 1px;
+    }
+}
+
+/* Simplified Nebula Effect */
+.nebula {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(72, 0, 143, 0.1) 0%, rgba(72, 0, 143, 0) 70%),
+                radial-gradient(ellipse at center, rgba(0, 81, 173, 0.1) 0%, rgba(0, 81, 173, 0) 70%);
+    filter: blur(8px);
+    opacity: 0.5;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Black hole background - simplified */
+.black-hole-bg {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+        rgba(0, 0, 0, 1) 0%, 
+        rgba(30, 0, 60, 0.8) 30%, 
+        rgba(50, 0, 80, 0.5) 45%, 
+        rgba(100, 20, 150, 0.3) 60%, 
+        transparent 90%);
+    box-shadow: 0 0 100px rgba(128, 0, 255, 0.3);
+    z-index: 5;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    animation: rotateBlackHole 60s linear infinite;
+}
+
+@keyframes rotateBlackHole {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Accretion disk - simplified */
+.accretion-disk {
+    position: absolute;
+    width: 900px;
+    height: 900px;
+    border-radius: 50%;
+    box-shadow: 0 0 80px 15px rgba(255, 0, 255, 0.2), 
+                0 0 40px 10px rgba(0, 100, 255, 0.2);
+    border: 3px solid rgba(100, 0, 255, 0.2);
+    transform: translate(-50%, -50%) rotateX(70deg);
+    animation: rotateAccretion 80s linear infinite;
+    z-index: 2;
+    pointer-events: none;
+    left: 50%;
+    top: 50%;
+}
+
+@keyframes rotateAccretion {
+    0% { transform: translate(-50%, -50%) rotateX(70deg) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotateX(70deg) rotate(360deg); }
+}
+
+/* Main Form */
+.container-wrapper {
+    position: relative;
+    z-index: 10;
+    perspective: 1000px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    padding: 40px;
+    background: rgba(5, 0, 15, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    animation: formAppear 1.5s forwards;
+    overflow: hidden;
+}
+
+@keyframes formAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+.container-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    opacity: 0;
+    animation: glowPulse 4s infinite alternate;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes glowPulse {
+    0% { 
+        opacity: 0.3;
+        box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+    }
+    100% { 
+        opacity: 0.5;
+        box-shadow: 0 0 30px rgba(138, 43, 226, 0.6);
+    }
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    position: relative;
+    letter-spacing: 2px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(138, 43, 226, 0.6), transparent);
+}
+
+.input-group {
+    margin-bottom: 25px;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: fadeIn 0.5s forwards;
+    animation-delay: calc(var(--delay, 0) * 0.1s);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Set animation delays for input groups */
+#name-group { --delay: 5; }
+#email-group { --delay: 8; }
+#planet-group { --delay: 11; }
+#message-group { --delay: 14; }
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #d9b6ff;
+    text-shadow: 0 0 5px rgba(217, 182, 255, 0.5);
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    transform-origin: left;
+}
+
+.input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+}
+
+.input-field input {
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(20, 10, 40, 0.6);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-field input:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(30, 15, 60, 0.7);
+}
+
+/* Message textarea */
+.message-field {
+    height: 100px;
+}
+
+.message-field textarea {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(20, 10, 40, 0.6);
+    color: white;
+    font-size: 1rem;
+    resize: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.message-field textarea:focus {
+    outline: none;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(30, 15, 60, 0.7);
+}
+
+/* Button */
+.submit-wrapper {
+    position: relative;
+    margin-top: 40px;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6600cc, #4A00E0);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    letter-spacing: 1px;
+    z-index: 10;
+    animation: fadeIn 0.5s forwards;
+    animation-delay: 1.8s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.5);
+    background: linear-gradient(135deg, #7700ee, #5a00ff);
+}
+
+.submit-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.submit-btn:hover::before {
+    left: 100%;
+}
+
+/* Black hole effect - simplified for performance */
+.black-hole-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: black;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    box-shadow: 0 0 100px 20px rgba(76, 0, 153, 0.5);
+}
+
+@keyframes expandBlackHole {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    30% {
+        width: 50px;
+        height: 50px;
+        opacity: 0.7;
+    }
+    70% {
+        width: 500px;
+        height: 500px;
+        opacity: 0.9;
+    }
+    100% {
+        width: 2000px;
+        height: 2000px;
+        opacity: 1;
+    }
+}
+
+/* Success message */
+.success-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s;
+}
+
+.success-content {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    transform: scale(0.8);
+    transition: transform 0.5s;
+}
+
+.success-message.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.success-message.active .success-content {
+    transform: scale(1);
+}
+
+.success-content h2 {
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(138, 43, 226, 0.7);
+    letter-spacing: 1px;
+}
+
+.success-status {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    opacity: 0.8;
+}
+
+.transmission-dots {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #4A00E0;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: pulseDot 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes pulseDot {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+}
+
+.back-btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #9733EE, #4A00E0);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.back-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(138, 43, 226, 0.7);
+}
+
+/* Simplified planets */
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 3;
+    box-shadow: inset 3px 3px 5px rgba(255,255,255,0.4);
+    pointer-events: none;
+}
+
+.planet-1 {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #3498db, #1a1a2e);
+    top: 15%;
+    right: 10%;
+}
+
+.planet-2 {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, #e74c3c, #4a235a);
+    bottom: 20%;
+    left: 5%;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.loading-indicator.active {
+    opacity: 1;
+}
+
+.loading-spinner {
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(138, 43, 226, 0.3);
+    border-top: 2px solid rgba(138, 43, 226, 1);
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Form validation styling */
+.input-field.error input,
+.input-field.error textarea {
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+
+.error-message.active {
+    opacity: 1;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .container {
+        max-width: 90%;
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .black-hole-bg,
+    .accretion-disk {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .planet-1, .planet-2 {
+        display: none;
+    }
+}

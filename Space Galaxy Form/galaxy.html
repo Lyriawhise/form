@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Futuristik Black Hole</title>
+    <link rel="stylesheet" href="galaxy.css">
+</head>
+<body>
+    <!-- Nebula Background -->
+    <div class="nebula"></div>
+    
+    <!-- Stars Background -->
+    <div class="stars"></div>
+    
+    <!-- Black hole background and accretion disk -->
+    <div class="black-hole-bg"></div>
+    <div class="accretion-disk"></div>
+    
+    <!-- Planets decoration -->
+    <div class="planet planet-1"></div>
+    <div class="planet planet-2"></div>
+    
+    <!-- Shooting stars container -->
+    <div class="shooting-stars-container"></div>
+    
+    <!-- Particles container -->
+    <div class="particles-container"></div>
+    
+    <!-- Gravity effect -->
+    <div class="gravity-effect"></div>
+    
+    <!-- Main Form Container -->
+    <div class="container-wrapper">
+        <div class="container">
+            <div class="container-glow"></div>
+            <h1>GALACTIC CONTACT</h1>
+            <form id="space-form">
+                <div class="input-group" id="name-group">
+                    <label for="name">Nama Universal</label>
+                    <div class="input-field">
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="error-message">Nama tidak boleh kosong</div>
+                </div>
+                
+                <div class="input-group" id="email-group">
+                    <label for="email">Email Antar Galaksi</label>
+                    <div class="input-field">
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="error-message">Format email tidak valid</div>
+                </div>
+                
+                <div class="input-group" id="planet-group">
+                    <label for="planet">Asal Planet</label>
+                    <div class="input-field">
+                        <input type="text" id="planet" placeholder="contoh: Bumi, Mars, Kepler-22b" required>
+                    </div>
+                    <div class="error-message">Asal planet tidak boleh kosong</div>
+                </div>
+                
+                <div class="input-group" id="message-group">
+                    <label for="message">Pesan Galaktik</label>
+                    <div class="input-field message-field">
+                        <textarea id="message" rows="4" required></textarea>
+                    </div>
+                    <div class="error-message">Pesan tidak boleh kosong</div>
+                </div>
+                
+                <div class="submit-wrapper">
+                    <button type="submit" class="submit-btn" id="submit-btn">TRANSMISI KE BLACK HOLE</button>
+                    <div class="loading-indicator">
+                        <div class="loading-spinner"></div>
+                        <span>Memproses transmisi...</span>
+                    </div>
+                </div>
+                
+                <div class="black-hole-effect" id="black-hole-effect"></div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Success Message -->
+    <div class="success-message" id="success-message">
+        <div class="success-content">
+            <h2>Pesan Anda Telah Memasuki Black Hole!</h2>
+            <div class="success-status">Mentransmisikan ke dimensi lain</div>
+            <div class="transmission-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <p>Pesan Anda sedang melintasi waktu dan ruang</p>
+            <button class="back-btn" id="back-btn">KEMBALI KE DIMENSI ASAL</button>
+        </div>
+    </div>
+
+    <script src="galaxy.js"></script>
+
+</body>
+</html>
